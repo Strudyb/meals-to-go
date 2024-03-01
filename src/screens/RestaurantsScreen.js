@@ -1,13 +1,21 @@
-import { useState } from 'react';
-import { FlatList, Platform } from 'react-native';
+import { useState, useContext } from 'react';
+import { FlatList, Platform, View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { Spacer, SafeArea } from '../components/base';
 import RestaurantInfoCard from '../components/restaurant/RestaurantInfoCard';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { RestaurantsContext } from '../services/restaurants/restaurants.context';
+import { ActivityIndicator } from 'react-native-paper';
 
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space.md};
+`;
+
+const LoadingView = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
 
 const RestaurantFlatList = styled(FlatList).attrs({
@@ -21,6 +29,8 @@ const RestaurantScreen = () => {
 
   const tabBarHeight = useBottomTabBarHeight();
 
+  const { isLoading, error, restaurants } = useContext(RestaurantsContext);
+
   return (
     <SafeArea>
       <SearchContainer>
@@ -32,29 +42,28 @@ const RestaurantScreen = () => {
         />
       </SearchContainer>
 
-      <RestaurantFlatList
-        data={[
-          { name: 1 },
-          { name: 2 },
-          { name: 3 },
-          { name: 4 },
-          { name: 5 },
-          { name: 6 },
-          { name: 7 },
-          { name: 8 },
-        ]}
-        renderItem={() => (
-          <>
+      {isLoading && (
+        <LoadingView>
+          <ActivityIndicator animating={isLoading} color="tomato" />
+        </LoadingView>
+      )}
+
+      {!isLoading && (
+        <RestaurantFlatList
+          data={restaurants}
+          renderItem={({ item }) => (
             <Spacer position="bottom" size="large">
-              <RestaurantInfoCard />
+              <RestaurantInfoCard restaurant={item} />
             </Spacer>
-          </>
-        )}
-        keyExtractor={(item) => item.name}
-        style={{
-          ...(Platform.OS === 'android' && { marginBottom: tabBarHeight + 80 }),
-        }}
-      />
+          )}
+          keyExtractor={(item) => item.name}
+          style={{
+            ...(Platform.OS === 'android' && {
+              marginBottom: tabBarHeight,
+            }),
+          }}
+        />
+      )}
     </SafeArea>
   );
 };

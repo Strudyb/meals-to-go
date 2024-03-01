@@ -23,7 +23,7 @@ const RestaurantInfo = ({ restaurant = {} }) => {
     address = '100 some random street',
     isOpenNow = true,
     rating = 4,
-    isClosedTemporarily = true,
+    isClosedTemporarily = false,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
