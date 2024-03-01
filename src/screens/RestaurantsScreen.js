@@ -24,7 +24,7 @@ const RestaurantFlatList = styled(FlatList).attrs({
 const RestaurantScreen = () => {
   const tabBarHeight = useBottomTabBarHeight();
 
-  const { isLoading, error, restaurants } = useContext(RestaurantsContext);
+  const { isLoading, restaurants } = useContext(RestaurantsContext);
 
   return (
     <SafeArea>
