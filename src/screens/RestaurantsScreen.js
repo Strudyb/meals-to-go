@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { FlatList, Platform } from 'react-native';
+import { FlatList, Platform, TouchableOpacity } from 'react-native';
 
 import styled from 'styled-components/native';
 import { Spacer, SafeArea } from '../components/base';
@@ -21,7 +21,7 @@ const RestaurantFlatList = styled(FlatList).attrs({
   },
 })``;
 
-const RestaurantScreen = () => {
+const RestaurantScreen = ({ navigation }) => {
   const tabBarHeight = useBottomTabBarHeight();
 
   const { isLoading, restaurants } = useContext(RestaurantsContext);
@@ -40,9 +40,15 @@ const RestaurantScreen = () => {
         <RestaurantFlatList
           data={restaurants}
           renderItem={({ item }) => (
-            <Spacer position="bottom" size="large">
-              <RestaurantInfoCard restaurant={item} />
-            </Spacer>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('RestaurantDetail', { restaurant: item })
+              }
+            >
+              <Spacer position="bottom" size="large">
+                <RestaurantInfoCard restaurant={item} />
+              </Spacer>
+            </TouchableOpacity>
           )}
           keyExtractor={(item) => item.name}
           style={{
