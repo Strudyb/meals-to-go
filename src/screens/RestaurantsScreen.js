@@ -1,13 +1,14 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { FlatList, Platform, TouchableOpacity } from 'react-native';
-
-import styled from 'styled-components/native';
-import { Spacer, SafeArea } from '../components/base';
-import RestaurantInfoCard from '../components/restaurant/RestaurantInfoCard';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { RestaurantsContext } from '../services/restaurants/restaurants.context';
 import { ActivityIndicator } from 'react-native-paper';
+import styled from 'styled-components/native';
+import { SafeArea, Spacer } from '../components/base';
+import FavouritesBar from '../components/favourite/FavouritesBar';
+import RestaurantInfoCard from '../components/restaurant/RestaurantInfoCard';
 import RestaurantSearch from '../components/restaurant/RestaurantSearch';
+import { FavouritesContext } from '../services/favourites/FavouritesContext';
+import { RestaurantsContext } from '../services/restaurants/restaurants.context';
 
 const LoadingView = styled.View`
   flex: 1;
@@ -22,13 +23,26 @@ const RestaurantFlatList = styled(FlatList).attrs({
 })``;
 
 const RestaurantScreen = ({ navigation }) => {
-  const tabBarHeight = useBottomTabBarHeight();
+  const [isFavouritesToggled, setIsFavouritesToggled] = useState(false);
 
   const { isLoading, restaurants } = useContext(RestaurantsContext);
+  const { favourites } = useContext(FavouritesContext);
+
+  const tabBarHeight = useBottomTabBarHeight();
 
   return (
     <SafeArea>
-      <RestaurantSearch />
+      <RestaurantSearch
+        isFavouritesToggled={isFavouritesToggled}
+        onFavouritesToggle={() => setIsFavouritesToggled(!isFavouritesToggled)}
+      />
+
+      {isFavouritesToggled && (
+        <FavouritesBar
+          favourites={favourites}
+          onNavigate={navigation.navigate}
+        />
+      )}
 
       {isLoading && (
         <LoadingView>

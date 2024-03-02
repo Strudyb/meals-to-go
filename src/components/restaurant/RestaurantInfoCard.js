@@ -12,6 +12,7 @@ import {
   RestaurantIcon,
   Section,
 } from './RestaurantInfoCard.styles';
+import Favourite from '../favourite/Favourite';
 
 const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -31,6 +32,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <RestaurantCard>
+      <Favourite restaurant={restaurant} />
       <RestaurantCardCover source={{ uri: photos[0] }} />
 
       <Info>
