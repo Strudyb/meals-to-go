@@ -56,6 +56,7 @@ const LoginScreen = () => {
           icon="login"
           mode="contained"
           loading={isLoading}
+          disabled={isLoading}
           onPress={() => onLogin(email, password)}
         >
           Login

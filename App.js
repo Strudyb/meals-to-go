@@ -9,9 +9,7 @@ import { ThemeProvider } from 'styled-components/native';
 import { theme } from './src/infrastructure/theme';
 
 import Navigation from './src/infrastructure/navigation';
-import { LocationContextProvider } from './src/services/location/location.context';
-import { RestaurantsContextProvider } from './src/services/restaurants/restaurants.context';
-import { FavouritesContextProvider } from './src/services/favourites/FavouritesContext';
+
 import { AuthenticationContextProvider } from './src/services/authentication/AuthenticationContext';
 
 export default function App() {
@@ -31,13 +29,7 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <AuthenticationContextProvider>
-          <FavouritesContextProvider>
-            <LocationContextProvider>
-              <RestaurantsContextProvider>
-                <Navigation />
-              </RestaurantsContextProvider>
-            </LocationContextProvider>
-          </FavouritesContextProvider>
+          <Navigation />
         </AuthenticationContextProvider>
       </ThemeProvider>
 
