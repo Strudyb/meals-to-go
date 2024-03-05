@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import {
-  getAuth,
+  // getAuth,
   getReactNativePersistence,
   initializeAuth,
   signInWithEmailAndPassword,
@@ -22,11 +22,11 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-// const auth = initializeAuth(app, {
-//   persistence: getReactNativePersistence(AsyncStorage),
-// });
+const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(AsyncStorage),
+});
 
-const auth = getAuth(app);
+// const auth = getAuth(app);
 
 export const loginRequest = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password);

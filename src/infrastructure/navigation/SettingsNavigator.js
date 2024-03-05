@@ -1,10 +1,9 @@
 import {
-  createStackNavigator,
-  TransitionPresets,
   CardStyleInterpolators,
+  createStackNavigator
 } from '@react-navigation/stack';
-import SettingsScreen from '../../screens/SettingsScreen';
 import FavouritesScreen from '../../screens/FavouritesScreen';
+import SettingsScreen from '../../screens/SettingsScreen';
 
 const SettingsStack = createStackNavigator();
 

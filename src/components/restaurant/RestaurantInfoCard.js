@@ -2,6 +2,7 @@ import { SvgXml } from 'react-native-svg';
 import open from '../../../assets/open';
 import star from '../../../assets/star';
 import { Spacer, Text } from '../base';
+import Favourite from '../favourite/Favourite';
 import {
   Address,
   Info,
@@ -12,7 +13,6 @@ import {
   RestaurantIcon,
   Section,
 } from './RestaurantInfoCard.styles';
-import Favourite from '../favourite/Favourite';
 
 const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {

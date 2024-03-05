@@ -63,7 +63,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     logout()
       .then((result) => {
         setUser(null);
-        setError(null)
+        setError(null);
       })
       .catch((err) => {
         console.log(err);

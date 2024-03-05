@@ -1,11 +1,10 @@
-import { FlatList, Platform, TouchableOpacity } from 'react-native';
-import { SafeArea, Spacer, Text } from '../components/base';
-import styled from 'styled-components/native';
-import { useNavigation } from '@react-navigation/native';
-import RestaurantInfoCard from '../components/restaurant/RestaurantInfoCard';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { FavouritesContext } from '../services/favourites/FavouritesContext';
 import { useContext } from 'react';
+import { FlatList, Platform, TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
+import { SafeArea, Spacer, Text } from '../components/base';
+import RestaurantInfoCard from '../components/restaurant/RestaurantInfoCard';
+import { FavouritesContext } from '../services/favourites/FavouritesContext';
 
 const FavouritesFlatlist = styled(FlatList).attrs({
   contentContainerStyle: {
