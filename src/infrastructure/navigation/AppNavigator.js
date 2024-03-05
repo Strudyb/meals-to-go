@@ -1,11 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MapScreen from '../../screens/MapScreen';
-import SettingsScreen from '../../screens/SettingsScreen';
 import RestaurantsNavigator from './RestaurantsNavigator';
 import { FavouritesContextProvider } from '../../services/favourites/FavouritesContext';
 import { LocationContextProvider } from '../../services/location/location.context';
 import { RestaurantsContextProvider } from '../../services/restaurants/restaurants.context';
+import SettingsNavigator from './SettingsNavigator';
 
 const TAB_ICON = {
   Restaurants: 'restaurant',
@@ -50,7 +50,7 @@ const AppNavigator = () => {
             />
             <Tab.Screen
               name="Settings"
-              component={SettingsScreen}
+              component={SettingsNavigator}
               options={{ headerShown: false }}
             />
           </Tab.Navigator>
