@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import MapView, { Marker, Callout } from 'react-native-maps';
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import styled from 'styled-components/native';
 import MapCallout from '../components/map/MapCallout';
 import MapSearch from '../components/map/MapSearch';
@@ -36,6 +36,7 @@ const MapScreen = ({ navigation }) => {
           latitudeDelta: latDelta,
           longitudeDelta: 0.02,
         }}
+        provider={PROVIDER_GOOGLE}
       >
         {restaurants.map((restaurant, index) => {
           return (

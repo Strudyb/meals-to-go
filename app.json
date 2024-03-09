@@ -22,6 +22,11 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAb2Mfcb7orxdRUk2tai5iOJ-fjqGsdYjU"
+        }
+      },
       "package": "com.ylmzby.mealstogo"
     },
     "plugins": [
